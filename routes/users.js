@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const config = require('config');
+const { check, validationResult } = require('express-validator');
 
 const User = require('../models/User');
 
@@ -46,13 +48,25 @@ router.post('/', [
     // Generate a salt for hashing masterPassword
     const salt = await bcrypt.genSalt(10);
 
-    // Had masterPassword using bcryptjs
+    // Hash masterPassword using bcryptjs to be stored in DB
     user.masterPassword = await bcrypt.hash(masterPassword, salt);
 
     // Save user to DB
     await user.save();
 
-    res.send('User saved');
+    // Store user id in jwt payload
+    const payload = {
+      user: {
+        id: user.id
+      }
+    };
+
+    jwt.sign(payload, config.get('jwtSecret'), {
+      expiresIn: 36000
+    }, (err, token) => {
+      if (err) throw err;
+      res.json({ token });
+    })
 
   } catch (err) {
     console.error(err.message);
