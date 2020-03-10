@@ -61,6 +61,7 @@ router.post('/', [
       }
     };
 
+    // Add payload and jwtSecret to token and send back
     jwt.sign(payload, config.get('jwtSecret'), {
       expiresIn: 36000
     }, (err, token) => {
