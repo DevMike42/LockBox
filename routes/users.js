@@ -9,6 +9,7 @@ const User = require('../models/User');
 // @desc      Register a user
 // @access    Public
 router.post('/', [
+  // Validation checks on user input using express-validator
   check('name', 'Please add a name')
     .not()
     .isEmpty(),
@@ -17,20 +18,24 @@ router.post('/', [
   check('masterPassword', 'Please enter a password with 6 or more characters')
     .isLength({ min: 6 })
 ], async (req, res) => {
+  // Checks if validation checks are empty
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
 
+  // Destructure needed input from req.body
   const { name, email, masterPassword, passwordReminder } = req.body;
 
   try {
+    // Check if email is already in db
     let user = await User.findOne({ email: email });
 
     if (user) {
       return res.status(400).json({ msg: 'User already exists' });
     }
 
+    // Create new instance of a User
     user = new User({
       name,
       email,
@@ -38,10 +43,13 @@ router.post('/', [
       passwordReminder
     });
 
+    // Generate a salt for hashing masterPassword
     const salt = await bcrypt.genSalt(10);
 
+    // Had masterPassword using bcryptjs
     user.masterPassword = await bcrypt.hash(masterPassword, salt);
 
+    // Save user to DB
     await user.save();
 
     res.send('User saved');
