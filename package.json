@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "server": "npx nodemon server.js"
+    "server": "npx nodemon server.js",
+    "preinstall": "npx npm-force-resolutions"
   },
   "author": "Mike Rivera",
   "license": "ISC",
@@ -19,6 +20,10 @@
   },
   "devDependencies": {
     "concurrently": "^5.1.0",
+    "minimist": "^1.2.5",
     "nodemon": "^2.0.2"
+  },
+  "resolutions": {
+    "minimist": "^1.2.5"
   }
 }
