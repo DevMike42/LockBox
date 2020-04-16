@@ -53,6 +53,7 @@ router.post('/', [
       // If registered > check if masterPassword input matches stored data
       const isMatch = await bcrypt.compare(masterPassword, user.masterPassword);
 
+      // If masterPassword is incorrect > send error message
       if (!isMatch) {
         return res.status(400).json({ msg: 'Invalid Credentials: Password is incorrect' });
       }
