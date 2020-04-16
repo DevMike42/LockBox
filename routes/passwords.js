@@ -95,8 +95,27 @@ router.put('/:id', auth, async (req, res) => {
 // @route     DELETE api/passwords/:id
 // @desc      Delete password
 // @access    Public
-router.delete('/:id', (req, res) => {
-  res.send('Delete password');
+router.delete('/:id', auth, async (req, res) => {
+  // res.send('Delete password');
+  try {
+    let password = await Password.findById(req.params.id);
+
+    if (!password) {
+      return res.status(404).json({ msg: 'Password not found' });
+    }
+
+    // Make sure user owns password
+    if (password.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'Not authorized' });
+    }
+
+    await Password.findByIdAndRemove(req.params.id);
+
+    res.json({ msg: 'Password removed' });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
 });
 
 
