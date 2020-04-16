@@ -57,9 +57,40 @@ router.post('/', [auth, [
 // @route     PUT api/passwords/:id
 // @desc      Update password
 // @access    Private
-router.put('/:id', (req, res) => {
-  res.send('Update password');
+router.put('/:id', auth, async (req, res) => {
+  // res.send('Update password');
+  const { name, sitePassword, link, notes } = req.body;
+
+  // Build password object
+  const passwordFields = {};
+  if (name) passwordFields.name = name;
+  if (sitePassword) passwordFields.sitePassword = sitePassword;
+  if (link) passwordFields.link = link;
+  if (notes) passwordFields.notes = notes;
+
+  try {
+    let password = await Password.findById(req.params.id);
+
+    if (!password) {
+      return res.status(404).json({ msg: 'Password not found' });
+    }
+
+    // Make sure user owns password
+    if (password.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'Not authorized' });
+    }
+
+    password = await Password.findByIdAndUpdate(req.params.id,
+      { $set: passwordFields },
+      { new: true });
+
+    res.json(password);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
 });
+
 
 // @route     DELETE api/passwords/:id
 // @desc      Delete password
