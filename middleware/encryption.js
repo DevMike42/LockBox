@@ -1,8 +1,8 @@
 'use strict';
-const config = require('config');
+require('dotenv').config();
 const crypto = require('crypto');
 
-const ENCRYPTION_KEY = config.get('ENCRYPTION_KEY');
+const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY;
 
 const IV_LENGTH = 16;
 
