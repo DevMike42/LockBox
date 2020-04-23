@@ -1,9 +1,15 @@
 import React from 'react';
+import Passwords from '../passwords/Passwords';
 
 const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
+    <div className="grid-2">
+      <div>
+        {/* Password Form */}
+      </div>
+      <div>
+        <Passwords />
+      </div>
     </div>
   )
 };
