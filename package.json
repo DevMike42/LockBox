@@ -6,7 +6,10 @@
   "scripts": {
     "start": "node server.js",
     "server": "npx nodemon server.js",
-    "preinstall": "npx npm-force-resolutions"
+    "preinstall": "npx npm-force-resolutions",
+    "client": "npm start --prefix client",
+    "clientinstall": "npm install --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Mike Rivera",
   "license": "ISC",
