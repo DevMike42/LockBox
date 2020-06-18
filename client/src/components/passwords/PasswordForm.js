@@ -89,7 +89,8 @@ const PasswordForm = () => {
         </textarea>
       </div>
       <div>
-        <input type="submit" value="Add Password" className="btn btn-primary btn-block" />
+        <input type="submit" value="Add Password" className="btn btn-primary" />
+        <button className="btn btn-dark ml-3" data-dismiss="modal">Close</button>
       </div>
     </form>
   )

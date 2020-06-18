@@ -42,7 +42,8 @@ const PasswordState = props => {
         link: "www.site3.com",
         notes: "Notes for Site 3"
       },
-    ]
+    ],
+    current: null
   }
 
   // state - allows to access anything in state
@@ -61,8 +62,14 @@ const PasswordState = props => {
   }
 
   // Set Current Password
+  const setCurrent = contact => {
+    dispatch({ type: SET_CURRENT, payload: contact });
+  }
 
   // Clear Current Password
+  const clearCurrent = () => {
+    dispatch({ type: CLEAR_CURRENT });
+  }
 
   // Update Password
 
@@ -75,8 +82,11 @@ const PasswordState = props => {
     <PasswordContext.Provider
       value={{
         passwords: state.passwords,
+        current: state.current,
         addPassword,
-        deletePassword
+        deletePassword,
+        setCurrent,
+        clearCurrent
       }}>
       {props.children}
     </PasswordContext.Provider>

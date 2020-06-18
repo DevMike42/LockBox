@@ -8,10 +8,11 @@ const PasswordItem = ({ password }) => {
   // Destructure needed data from password Prop
   const { id, name, loginId, sitePassword, link, notes } = password;
 
-  const { deletePassword } = passwordContext;
+  const { deletePassword, setCurrent, clearCurrent } = passwordContext;
 
   const onDelete = () => {
     deletePassword(id);
+    clearCurrent();
   };
 
   return (
@@ -38,7 +39,7 @@ const PasswordItem = ({ password }) => {
           </li>)}
         </ul>
         <p>
-          <button className="btn btn-dark btn-sm">Edit</button>
+          <button className="btn btn-dark btn-sm" onClick={() => setCurrent(password)}>Edit</button>
           <button className="btn btn-danger btn-sm ml-2" onClick={onDelete}>Delete</button>
         </p>
       </div>
