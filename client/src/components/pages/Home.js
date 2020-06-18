@@ -4,11 +4,13 @@ import PasswordForm from '../passwords/PasswordForm';
 
 const Home = () => {
   return (
-    <div className="d-flex">
-      <div className="col-6 my-5">
-        <PasswordForm />
+    <div className="container">
+      <div className="row">
+        <div className="col-12 mx-auto my-5">
+          <PasswordForm />
+        </div>
       </div>
-      <div className="col-6 my-5">
+      <div className="row">
         <Passwords />
       </div>
     </div>

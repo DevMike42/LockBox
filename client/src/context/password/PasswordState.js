@@ -56,6 +56,9 @@ const PasswordState = props => {
   }
 
   // Delete Password
+  const deletePassword = id => {
+    dispatch({ type: DELETE_PASSWORD, payload: id });
+  }
 
   // Set Current Password
 
@@ -72,7 +75,8 @@ const PasswordState = props => {
     <PasswordContext.Provider
       value={{
         passwords: state.passwords,
-        addPassword
+        addPassword,
+        deletePassword
       }}>
       {props.children}
     </PasswordContext.Provider>

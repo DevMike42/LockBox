@@ -16,6 +16,11 @@ export default (state, action) => {
         ...state,
         passwords: [...state.passwords, action.payload]
       }
+    case DELETE_PASSWORD:
+      return {
+        ...state,
+        passwords: state.passwords.filter(password => password.id !== action.payload)
+      }
     default:
       return state;
   }
