@@ -39,7 +39,7 @@ const PasswordItem = ({ password }) => {
           </li>)}
         </ul>
         <p>
-          <button className="btn btn-dark btn-sm" onClick={() => setCurrent(password)}>Edit</button>
+          <button className="btn btn-dark btn-sm" data-toggle="modal" data-target="#addPasswordModal" onClick={() => setCurrent(password)}>Edit</button>
           <button className="btn btn-danger btn-sm ml-2" onClick={onDelete}>Delete</button>
         </p>
       </div>

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Passwords from '../passwords/Passwords';
 import PasswordForm from '../passwords/PasswordForm';
 
+
 const Home = () => {
+
   return (
     <div className="container">
       <button className="btn btn-primary btn-block my-5" data-toggle="modal" data-target="#addPasswordModal">Add Password</button>

@@ -1,8 +1,24 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PasswordContext from '../../context/password/passwordContext';
 
 const PasswordForm = () => {
   const passwordContext = useContext(PasswordContext);
+
+  const { addPassword, updatePassword, current, clearCurrent } = passwordContext;
+
+  useEffect(() => {
+    if (current !== null) {
+      setPassword(current);
+    } else {
+      setPassword({
+        name: '',
+        loginId: '',
+        sitePassword: '',
+        link: '',
+        notes: ''
+      });
+    }
+  }, [passwordContext, current]);
 
   const [password, setPassword] = useState({
     name: '',
@@ -18,8 +34,13 @@ const PasswordForm = () => {
 
   const onSubmit = e => {
     e.preventDefault();
+    if (current === null) {
+      addPassword(password);
+      document.getElementById('addPasswordModal').modal('hide');
+    } else {
+      updatePassword(password);
+    }
 
-    passwordContext.addPassword(password);
     setPassword({
       name: '',
       loginId: '',
@@ -27,11 +48,20 @@ const PasswordForm = () => {
       link: '',
       notes: ''
     });
-  }
+  };
+
+  const clearAll = () => {
+    clearCurrent();
+  };
 
   return (
     <form onSubmit={onSubmit}>
-      <h2 className="text-dark text-center">Add Password</h2>
+      <div className="modal-header mb-2">
+        <h2 className="text-dark text-center">{current ? 'Edit' : 'Add'} Password</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <div className="form-group">
         <label htmlFor="name">Site Name</label>
         <input
@@ -89,9 +119,16 @@ const PasswordForm = () => {
         </textarea>
       </div>
       <div>
-        <input type="submit" value="Add Password" className="btn btn-primary" />
-        <button className="btn btn-dark ml-3" data-dismiss="modal">Close</button>
+        <button type="submit" className="btn btn-primary">
+          {current ? 'Save Changes' : 'Add Password'}
+        </button>
+        {current && (
+          <button className="btn btn-secondary ml-3" onClick={clearAll}>
+            Clear
+          </button>
+        )}
       </div>
+
     </form>
   )
 }

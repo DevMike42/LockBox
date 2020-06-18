@@ -16,6 +16,11 @@ export default (state, action) => {
         ...state,
         passwords: [...state.passwords, action.payload]
       }
+    case UPDATE_PASSWORD:
+      return {
+        ...state,
+        passwords: state.passwords.map(password => password.id === action.payload.id ? action.payload : password)
+      }
     case DELETE_PASSWORD:
       return {
         ...state,

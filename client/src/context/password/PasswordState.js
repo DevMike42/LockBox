@@ -62,8 +62,8 @@ const PasswordState = props => {
   }
 
   // Set Current Password
-  const setCurrent = contact => {
-    dispatch({ type: SET_CURRENT, payload: contact });
+  const setCurrent = password => {
+    dispatch({ type: SET_CURRENT, payload: password });
   }
 
   // Clear Current Password
@@ -72,6 +72,9 @@ const PasswordState = props => {
   }
 
   // Update Password
+  const updatePassword = password => {
+    dispatch({ type: UPDATE_PASSWORD, payload: password });
+  }
 
   // Filter Passwords
 
@@ -86,7 +89,8 @@ const PasswordState = props => {
         addPassword,
         deletePassword,
         setCurrent,
-        clearCurrent
+        clearCurrent,
+        updatePassword
       }}>
       {props.children}
     </PasswordContext.Provider>
