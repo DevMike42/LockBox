@@ -19,9 +19,7 @@ const Home = () => {
       <div className="row d-block">
         <PasswordFilter />
       </div>
-      <div className="row">
-        <Passwords />
-      </div>
+      <Passwords />
     </div>
   )
 };

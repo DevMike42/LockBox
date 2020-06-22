@@ -1,4 +1,5 @@
 import React, { Fragment, useContext } from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import PasswordItem from './PasswordItem';
 import PasswordContext from '../../context/password/passwordContext';
 
@@ -13,13 +14,19 @@ const Passwords = () => {
 
   return (
     <Fragment>
-      {filtered !== null
-        ? filtered.map(password => (
-          <PasswordItem key={password.id} password={password} />
-        ))
-        : passwords.map(password => (
-          <PasswordItem key={password.id} password={password} />
-        ))}
+      <TransitionGroup className="row">
+        {filtered !== null
+          ? filtered.map(password => (
+            <CSSTransition key={password.id} timeout={500} classNames="item" >
+              <PasswordItem password={password} />
+            </CSSTransition>
+          ))
+          : passwords.map(password => (
+            <CSSTransition key={password.id} timeout={500} classNames="item" >
+              <PasswordItem key={password.id} password={password} />
+            </CSSTransition>
+          ))}
+      </TransitionGroup>
     </Fragment>
   )
 };
