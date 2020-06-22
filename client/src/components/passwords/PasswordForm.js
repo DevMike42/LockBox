@@ -32,11 +32,10 @@ const PasswordForm = () => {
 
   const onChange = e => setPassword({ ...password, [e.target.name]: e.target.value });
 
-  const onSubmit = e => {
+  const submitForm = e => {
     e.preventDefault();
     if (current === null) {
       addPassword(password);
-      document.getElementById('addPasswordModal').modal('hide');
     } else {
       updatePassword(password);
     }
@@ -48,6 +47,8 @@ const PasswordForm = () => {
       link: '',
       notes: ''
     });
+
+    // document.getElementById('addPasswordModal').modal('hide')
   };
 
   const clearAll = () => {
@@ -55,10 +56,10 @@ const PasswordForm = () => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form>
       <div className="modal-header mb-2">
         <h2 className="text-dark text-center">{current ? 'Edit' : 'Add'} Password</h2>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -119,9 +120,13 @@ const PasswordForm = () => {
         </textarea>
       </div>
       <div>
-        <button type="submit" className="btn btn-primary">
-          {current ? 'Save Changes' : 'Add Password'}
-        </button>
+        <input
+          type="button"
+          className="btn btn-primary"
+          value={current ? 'Save Changes' : 'Add Password'}
+          onClick={submitForm}
+          data-dismiss="modal"
+        />
         {current && (
           <button className="btn btn-secondary ml-3" onClick={clearAll}>
             Clear

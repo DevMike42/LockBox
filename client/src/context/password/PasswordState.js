@@ -54,6 +54,8 @@ const PasswordState = props => {
   const addPassword = password => {
     password.id = uuidv4();
     dispatch({ type: ADD_PASSWORD, payload: password });
+    // document.getElementById('addPasswordModal').modal('hide');
+
   }
 
   // Delete Password
