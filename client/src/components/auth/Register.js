@@ -1,20 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import AlertContext from '../../context/alert/alertContext';
 
 const Register = () => {
+  const alertContext = useContext(AlertContext);
+
+  const { setAlert } = alertContext;
+
   const [user, setUser] = useState({
     name: '',
     email: '',
     masterPassword: '',
-    PasswordReminder: ''
+    passwordReminder: ''
   });
 
-  const { name, email, masterPassword, PasswordReminder } = user;
+  const { name, email, masterPassword, passwordReminder } = user;
 
   const onChange = e => setUser({ ...user, [e.target.name]: e.target.value });
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log('Register Submit');
+    if (name === '' || email === '' || masterPassword === '') {
+      setAlert('Please enter all fields', 'danger')
+    } else if (masterPassword !== passwordReminder) {
+      setAlert('Passwords do not match', 'danger');
+    } else {
+      console.log('Register Submit');
+    }
 
   };
 
@@ -52,6 +63,7 @@ const Register = () => {
             name="masterPassword"
             value={masterPassword}
             onChange={onChange}
+            minLength="6"
           />
         </div>
         <div className="form-group">
@@ -60,8 +72,9 @@ const Register = () => {
             className="form-control"
             type="password"
             name="passwordReminder"
-            value={PasswordReminder}
+            value={passwordReminder}
             onChange={onChange}
+            minLength="6"
           />
         </div>
         <input
