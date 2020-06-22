@@ -47,8 +47,6 @@ const PasswordForm = () => {
       link: '',
       notes: ''
     });
-
-    // document.getElementById('addPasswordModal').modal('hide')
   };
 
   const clearAll = () => {

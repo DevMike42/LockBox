@@ -1,10 +1,13 @@
 import {
   ADD_PASSWORD,
+  GET_PASSWORDS,
   DELETE_PASSWORD,
+  CLEAR_PASSWORDS,
   SET_CURRENT,
   CLEAR_CURRENT,
   UPDATE_PASSWORD,
   FILTER_PASSWORDS,
+  PASSWORD_ERROR,
   CLEAR_FILTER
 } from '../types';
 
@@ -14,17 +17,34 @@ export default (state, action) => {
     case ADD_PASSWORD:
       return {
         ...state,
-        passwords: [...state.passwords, action.payload]
+        passwords: [...state.passwords, action.payload],
+        loading: false
+      }
+    case GET_PASSWORDS:
+      return {
+        ...state,
+        passwords: action.payload,
+        loading: false
       }
     case UPDATE_PASSWORD:
       return {
         ...state,
-        passwords: state.passwords.map(password => password.id === action.payload.id ? action.payload : password)
+        passwords: state.passwords.map(password => password.id === action.payload.id ? action.payload : password),
+        loading: false
       }
     case DELETE_PASSWORD:
       return {
         ...state,
-        passwords: state.passwords.filter(password => password.id !== action.payload)
+        passwords: state.passwords.filter(password => password.id !== action.payload),
+        loading: false
+      }
+    case CLEAR_PASSWORDS:
+      return {
+        ...state,
+        passwords: null,
+        filtered: null,
+        error: null,
+        current: null
       }
     case SET_CURRENT:
       return {
@@ -48,6 +68,11 @@ export default (state, action) => {
       return {
         ...state,
         filtered: null
+      }
+    case PASSWORD_ERROR:
+      return {
+        ...state,
+        error: action.payload
       }
     default:
       return state;

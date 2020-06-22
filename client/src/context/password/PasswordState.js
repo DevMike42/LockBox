@@ -1,67 +1,71 @@
-// For gaining access to State and Dispatch
 import React, { useReducer } from 'react';
-// For generating a random id
-import { v4 as uuidv4 } from 'uuid';
-
+import axios from 'axios';
 import PasswordContext from './passwordContext';
 import passwordReducer from './passwordReducer';
 import {
   ADD_PASSWORD,
+  GET_PASSWORDS,
+  CLEAR_PASSWORDS,
   DELETE_PASSWORD,
   SET_CURRENT,
   CLEAR_CURRENT,
   UPDATE_PASSWORD,
   FILTER_PASSWORDS,
+  PASSWORD_ERROR,
   CLEAR_FILTER
 } from '../types';
 
 const PasswordState = props => {
   const initialState = {
-    passwords: [
-      {
-        id: 1,
-        name: "Bank of America",
-        loginId: "username1",
-        sitePassword: "password1",
-        link: "www.site1.com",
-        notes: "Notes for Site 1"
-      },
-      {
-        id: 2,
-        name: "Facebook",
-        loginId: "username2",
-        sitePassword: "password2",
-        link: "www.site2.com",
-        notes: "Notes for Site 2"
-      },
-      {
-        id: 3,
-        name: "Github",
-        loginId: "username3",
-        sitePassword: "password3",
-        link: "www.site3.com",
-        notes: "Notes for Site 3"
-      },
-    ],
+    passwords: null,
     current: null,
-    filtered: null
-  }
+    filtered: null,
+    error: null
+  };
 
   // state - allows to access anything in state
   // dispatch - allows to dispatch objects to the reducer
   const [state, dispatch] = useReducer(passwordReducer, initialState);
 
-  // Add Password
-  const addPassword = password => {
-    password.id = uuidv4();
-    dispatch({ type: ADD_PASSWORD, payload: password });
-    // document.getElementById('addPasswordModal').modal('hide');
+  // Get Passwords
+  const getPasswords = async () => {
+    try {
+      const res = await axios.get('/api/passwords');
+      dispatch({
+        type: GET_PASSWORDS,
+        payload: res.data
+      });
+    } catch (err) {
+      dispatch({
+        type: PASSWORD_ERROR,
+        payload: err.response.msg
+      });
+    }
+  }
 
+  // Add Password
+  const addPassword = async password => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    try {
+      const res = await axios.post('/api/passwords', password, config);
+      dispatch({ type: ADD_PASSWORD, payload: res.data });
+    } catch (err) {
+      dispatch({ type: PASSWORD_ERROR, payload: err.response.msg });
+    }
   }
 
   // Delete Password
   const deletePassword = id => {
     dispatch({ type: DELETE_PASSWORD, payload: id });
+  }
+
+  // Clear Passwords
+  const clearPasswords = () => {
+    dispatch({ type: CLEAR_PASSWORDS });
   }
 
   // Set Current Password
@@ -96,8 +100,11 @@ const PasswordState = props => {
         passwords: state.passwords,
         current: state.current,
         filtered: state.filtered,
+        error: state.error,
         addPassword,
+        getPasswords,
         deletePassword,
+        clearPasswords,
         setCurrent,
         clearCurrent,
         updatePassword,
