@@ -5,13 +5,21 @@ import PasswordContext from '../../context/password/passwordContext';
 const Passwords = () => {
   const passwordContext = useContext(PasswordContext);
 
-  const { passwords } = passwordContext;
+  const { passwords, filtered } = passwordContext;
+
+  if (passwords.length === 0) {
+    return <h4>Please add a Password</h4>
+  }
 
   return (
     <Fragment>
-      {passwords.map(password => (
-        <PasswordItem key={password.id} password={password} />
-      ))}
+      {filtered !== null
+        ? filtered.map(password => (
+          <PasswordItem key={password.id} password={password} />
+        ))
+        : passwords.map(password => (
+          <PasswordItem key={password.id} password={password} />
+        ))}
     </Fragment>
   )
 };

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import Passwords from '../passwords/Passwords';
 import PasswordForm from '../passwords/PasswordForm';
+import PasswordFilter from '../passwords/PasswordFilter';
 
 
 const Home = () => {
@@ -15,7 +16,9 @@ const Home = () => {
           </div>
         </div>
       </div>
-
+      <div className="row d-block">
+        <PasswordFilter />
+      </div>
       <div className="row">
         <Passwords />
       </div>

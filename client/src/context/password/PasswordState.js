@@ -20,7 +20,7 @@ const PasswordState = props => {
     passwords: [
       {
         id: 1,
-        name: "Site 1",
+        name: "Bank of America",
         loginId: "username1",
         sitePassword: "password1",
         link: "www.site1.com",
@@ -28,7 +28,7 @@ const PasswordState = props => {
       },
       {
         id: 2,
-        name: "Site 2",
+        name: "Facebook",
         loginId: "username2",
         sitePassword: "password2",
         link: "www.site2.com",
@@ -36,14 +36,15 @@ const PasswordState = props => {
       },
       {
         id: 3,
-        name: "Site 3",
+        name: "Github",
         loginId: "username3",
         sitePassword: "password3",
         link: "www.site3.com",
         notes: "Notes for Site 3"
       },
     ],
-    current: null
+    current: null,
+    filtered: null
   }
 
   // state - allows to access anything in state
@@ -79,8 +80,14 @@ const PasswordState = props => {
   }
 
   // Filter Passwords
+  const filterPasswords = text => {
+    dispatch({ type: FILTER_PASSWORDS, payload: text });
+  }
 
   // Clear Filter
+  const clearFilter = () => {
+    dispatch({ type: CLEAR_FILTER });
+  }
 
 
   return (
@@ -88,11 +95,14 @@ const PasswordState = props => {
       value={{
         passwords: state.passwords,
         current: state.current,
+        filtered: state.filtered,
         addPassword,
         deletePassword,
         setCurrent,
         clearCurrent,
-        updatePassword
+        updatePassword,
+        filterPasswords,
+        clearFilter
       }}>
       {props.children}
     </PasswordContext.Provider>

@@ -36,6 +36,19 @@ export default (state, action) => {
         ...state,
         current: null
       }
+    case FILTER_PASSWORDS:
+      return {
+        ...state,
+        filtered: state.passwords.filter(password => {
+          const regex = new RegExp(`${action.payload}`, 'gi');
+          return password.name.match(regex);
+        })
+      }
+    case CLEAR_FILTER:
+      return {
+        ...state,
+        filtered: null
+      }
     default:
       return state;
   }
