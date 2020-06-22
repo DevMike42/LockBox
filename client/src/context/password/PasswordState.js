@@ -1,7 +1,7 @@
 // For gaining access to State and Dispatch
 import React, { useReducer } from 'react';
 // For generating a random id
-import uuid from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 import PasswordContext from './passwordContext';
 import passwordReducer from './passwordReducer';
@@ -20,7 +20,7 @@ const PasswordState = props => {
     passwords: [
       {
         id: 1,
-        name: "Site 1",
+        name: "Bank of America",
         loginId: "username1",
         sitePassword: "password1",
         link: "www.site1.com",
@@ -28,7 +28,7 @@ const PasswordState = props => {
       },
       {
         id: 2,
-        name: "Site 2",
+        name: "Facebook",
         loginId: "username2",
         sitePassword: "password2",
         link: "www.site2.com",
@@ -36,38 +36,73 @@ const PasswordState = props => {
       },
       {
         id: 3,
-        name: "Site 3",
+        name: "Github",
         loginId: "username3",
         sitePassword: "password3",
         link: "www.site3.com",
         notes: "Notes for Site 3"
       },
-    ]
+    ],
+    current: null,
+    filtered: null
   }
 
   // state - allows to access anything in state
-  // dispatch - allows to dispatch object to reducer
+  // dispatch - allows to dispatch objects to the reducer
   const [state, dispatch] = useReducer(passwordReducer, initialState);
 
   // Add Password
+  const addPassword = password => {
+    password.id = uuidv4();
+    dispatch({ type: ADD_PASSWORD, payload: password });
+    // document.getElementById('addPasswordModal').modal('hide');
+
+  }
 
   // Delete Password
+  const deletePassword = id => {
+    dispatch({ type: DELETE_PASSWORD, payload: id });
+  }
 
   // Set Current Password
+  const setCurrent = password => {
+    dispatch({ type: SET_CURRENT, payload: password });
+  }
 
   // Clear Current Password
+  const clearCurrent = () => {
+    dispatch({ type: CLEAR_CURRENT });
+  }
 
   // Update Password
+  const updatePassword = password => {
+    dispatch({ type: UPDATE_PASSWORD, payload: password });
+  }
 
   // Filter Passwords
+  const filterPasswords = text => {
+    dispatch({ type: FILTER_PASSWORDS, payload: text });
+  }
 
   // Clear Filter
+  const clearFilter = () => {
+    dispatch({ type: CLEAR_FILTER });
+  }
 
 
   return (
     <PasswordContext.Provider
       value={{
-        passwords: state.passwords
+        passwords: state.passwords,
+        current: state.current,
+        filtered: state.filtered,
+        addPassword,
+        deletePassword,
+        setCurrent,
+        clearCurrent,
+        updatePassword,
+        filterPasswords,
+        clearFilter
       }}>
       {props.children}
     </PasswordContext.Provider>

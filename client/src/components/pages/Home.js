@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Passwords from '../passwords/Passwords';
+import PasswordForm from '../passwords/PasswordForm';
+import PasswordFilter from '../passwords/PasswordFilter';
+
 
 const Home = () => {
+
   return (
-    <div className="grid-2">
-      <div>
-        {/* Password Form */}
+    <div className="container">
+      <button className="btn btn-primary btn-block my-5" data-toggle="modal" data-target="#addPasswordModal">Add Password</button>
+      <div className="modal fade" id="addPasswordModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div className="modal-dialog">
+          <div className="modal-content p-4">
+            <PasswordForm />
+          </div>
+        </div>
       </div>
-      <div>
-        <Passwords />
+      <div className="row d-block">
+        <PasswordFilter />
       </div>
+      <Passwords />
     </div>
   )
 };

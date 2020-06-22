@@ -4,6 +4,9 @@
 # node modules
 node_modules/
 
+# React Client Build
+/client/build
+
 # client environment variables
 .DS_Store
 /client/.env.local
