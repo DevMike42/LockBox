@@ -4,7 +4,12 @@ import PasswordContext from '../../context/password/passwordContext';
 const PasswordForm = () => {
   const passwordContext = useContext(PasswordContext);
 
-  const { addPassword, updatePassword, current, clearCurrent } = passwordContext;
+  const {
+    addPassword,
+    updatePassword,
+    current,
+    clearCurrent
+  } = passwordContext;
 
   useEffect(() => {
     if (current !== null) {
@@ -68,7 +73,7 @@ const PasswordForm = () => {
           type="text"
           placeholder="Enter a nickname for this site"
           name="name"
-          value={name}
+          value={name || ''}
           onChange={onChange}
         />
       </div>
@@ -79,7 +84,7 @@ const PasswordForm = () => {
           type="text"
           placeholder="Enter a Username or Login ID"
           name="loginId"
-          value={loginId}
+          value={loginId || ''}
           onChange={onChange}
         />
       </div>
@@ -90,7 +95,7 @@ const PasswordForm = () => {
           type="password"
           placeholder="Enter the password for this site"
           name="sitePassword"
-          value={sitePassword}
+          value={sitePassword || ''}
           onChange={onChange}
         />
       </div>
@@ -101,7 +106,7 @@ const PasswordForm = () => {
           type="text"
           placeholder="www.example.com"
           name="link"
-          value={link}
+          value={link || ''}
           onChange={onChange}
         />
       </div>
@@ -112,7 +117,7 @@ const PasswordForm = () => {
           type="textarea"
           placeholder="Notes"
           name="notes"
-          value={notes}
+          value={notes || ''}
           onChange={onChange}
         >
         </textarea>

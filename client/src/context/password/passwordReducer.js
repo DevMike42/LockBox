@@ -16,9 +16,9 @@ export default (state, action) => {
   switch (action.type) {
     case ADD_PASSWORD:
       return {
-        ...state,
-        passwords: [...state.passwords, action.payload],
-        loading: false
+        ...state
+        // passwords: [action.payload, ...state.passwords],
+        // loading: false
       }
     case GET_PASSWORDS:
       return {
@@ -28,14 +28,14 @@ export default (state, action) => {
       }
     case UPDATE_PASSWORD:
       return {
-        ...state,
-        passwords: state.passwords.map(password => password.id === action.payload.id ? action.payload : password),
-        loading: false
+        ...state
+        // passwords: state.passwords.map(password => password._id === action.payload._id ? action.payload : password),
+        // loading: false
       }
     case DELETE_PASSWORD:
       return {
         ...state,
-        passwords: state.passwords.filter(password => password.id !== action.payload),
+        passwords: state.passwords.filter(password => password._id !== action.payload),
         loading: false
       }
     case CLEAR_PASSWORDS:

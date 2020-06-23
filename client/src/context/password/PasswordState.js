@@ -52,14 +52,59 @@ const PasswordState = props => {
     }
     try {
       const res = await axios.post('/api/passwords', password, config);
-      dispatch({ type: ADD_PASSWORD, payload: res.data });
+      dispatch({
+        type: ADD_PASSWORD,
+        payload: res.data
+      });
     } catch (err) {
-      dispatch({ type: PASSWORD_ERROR, payload: err.response.msg });
+      dispatch({
+        type: PASSWORD_ERROR,
+        payload: err.response.msg
+      });
     }
+
+    await getPasswords();
+  }
+
+  // Update Password
+  const updatePassword = async password => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    try {
+      const res = await axios.put(`/api/passwords/${password._id}`, password, config);
+      dispatch({
+        type: UPDATE_PASSWORD,
+        payload: res.data
+      });
+
+    } catch (err) {
+      dispatch({
+        type: PASSWORD_ERROR,
+        payload: err.response.msg
+      });
+    }
+
+    await getPasswords();
   }
 
   // Delete Password
-  const deletePassword = id => {
+  const deletePassword = async id => {
+    try {
+      await axios.delete(`/api/passwords/${id}`);
+
+      dispatch({
+        type: DELETE_PASSWORD,
+        payload: id
+      });
+    } catch (err) {
+      dispatch({
+        type: PASSWORD_ERROR,
+        payload: err.response.msg
+      });
+    }
     dispatch({ type: DELETE_PASSWORD, payload: id });
   }
 
@@ -76,11 +121,6 @@ const PasswordState = props => {
   // Clear Current Password
   const clearCurrent = () => {
     dispatch({ type: CLEAR_CURRENT });
-  }
-
-  // Update Password
-  const updatePassword = password => {
-    dispatch({ type: UPDATE_PASSWORD, payload: password });
   }
 
   // Filter Passwords

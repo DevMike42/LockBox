@@ -6,12 +6,12 @@ const PasswordItem = ({ password }) => {
   const passwordContext = useContext(PasswordContext);
 
   // Destructure needed data from password Prop
-  const { id, name, loginId, sitePassword, link, notes } = password;
+  const { _id, name, loginId, sitePassword, link, notes } = password;
 
   const { deletePassword, setCurrent, clearCurrent } = passwordContext;
 
   const onDelete = () => {
-    deletePassword(id);
+    deletePassword(_id);
     clearCurrent();
   };
 
