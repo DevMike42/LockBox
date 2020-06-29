@@ -16,7 +16,7 @@ module.exports = {
     }
 
     // Destructure needed input from req.body
-    const { name, email, masterPassword, passwordReminder } = req.body;
+    const { name, email, masterPassword } = req.body;
 
     try {
       // Check if email is already in db
@@ -30,8 +30,7 @@ module.exports = {
       user = new User({
         name,
         email,
-        masterPassword,
-        passwordReminder
+        masterPassword
       });
 
       // Generate a salt for hashing masterPassword

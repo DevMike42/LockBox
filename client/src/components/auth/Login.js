@@ -26,8 +26,7 @@ const Login = (props) => {
   const [user, setUser] = useState({
     name: '',
     email: '',
-    masterPassword: '',
-    passwordReminder: ''
+    masterPassword: ''
   });
 
   const { email, masterPassword } = user;

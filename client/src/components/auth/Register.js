@@ -26,10 +26,10 @@ const Register = (props) => {
     name: '',
     email: '',
     masterPassword: '',
-    passwordReminder: ''
+    confirmPassword: ''
   });
 
-  const { name, email, masterPassword, passwordReminder } = user;
+  const { name, email, masterPassword, confirmPassword } = user;
 
   const onChange = e => setUser({ ...user, [e.target.name]: e.target.value });
 
@@ -37,7 +37,7 @@ const Register = (props) => {
     e.preventDefault();
     if (name === '' || email === '' || masterPassword === '') {
       setAlert('Please enter all fields', 'danger')
-    } else if (masterPassword !== passwordReminder) {
+    } else if (masterPassword !== confirmPassword) {
       setAlert('Passwords do not match', 'danger');
     } else {
       register({
@@ -87,12 +87,12 @@ const Register = (props) => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="passwordReminder">Confirm Password</label>
+          <label htmlFor="confirmPassword">Confirm Password</label>
           <input
             className="form-control"
             type="password"
-            name="passwordReminder"
-            value={passwordReminder}
+            name="confirmPassword"
+            value={confirmPassword}
             onChange={onChange}
             minLength="6"
           />
