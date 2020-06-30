@@ -13,7 +13,7 @@ const Login = (props) => {
   useEffect(() => {
     if (isAuthenticated) {
       // Redirect
-      props.history.push('/');
+      props.history.push('/home');
     }
 
     if (error === 'Invalid Credentials: A user with that email does not exist') {
@@ -26,8 +26,7 @@ const Login = (props) => {
   const [user, setUser] = useState({
     name: '',
     email: '',
-    masterPassword: '',
-    passwordReminder: ''
+    masterPassword: ''
   });
 
   const { email, masterPassword } = user;
@@ -47,37 +46,39 @@ const Login = (props) => {
   };
 
   return (
-    <div className="container">
-      <h1>
-        Account <span className="text-primary">Login</span>
-      </h1>
-      <form onSubmit={onSubmit}>
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
+    <div className="bg-light" style={{ height: "100vh" }}>
+      <div className="col-md-4 text-secondary mx-auto py-5">
+        <h1 className="mb-4 text-center">
+          Account <span className="text-primary">Login</span>
+        </h1>
+        <form onSubmit={onSubmit}>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              className="form-control"
+              type="email"
+              name="email"
+              value={email}
+              onChange={onChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="masterPassword">Password</label>
+            <input
+              className="form-control"
+              type="password"
+              name="masterPassword"
+              value={masterPassword}
+              onChange={onChange}
+            />
+          </div>
           <input
-            className="form-control"
-            type="email"
-            name="email"
-            value={email}
-            onChange={onChange}
+            type="submit"
+            value="Login"
+            className="btn btn-primary btn-block"
           />
-        </div>
-        <div className="form-group">
-          <label htmlFor="masterPassword">Password</label>
-          <input
-            className="form-control"
-            type="password"
-            name="masterPassword"
-            value={masterPassword}
-            onChange={onChange}
-          />
-        </div>
-        <input
-          type="submit"
-          value="Login"
-          className="btn btn-primary btn-block"
-        />
-      </form>
+        </form>
+      </div>
     </div>
   )
 }

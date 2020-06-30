@@ -31,10 +31,10 @@ const Navbar = ({ title, icon }) => {
   const guestLinks = (
     <Fragment>
       <li className="nav-item">
-        <Link className="nav-link" to='/register'>Register</Link>
-      </li>
-      <li className="nav-item">
         <Link className="nav-link" to='/login'>Login</Link>
+      </li>
+      <li className="nav-item ml-3">
+        <Link className="nav-link btn btn-primary btn-sml text-white" to='/register'>Get Lockbox Free</Link>
       </li>
     </Fragment>
   );
@@ -43,9 +43,13 @@ const Navbar = ({ title, icon }) => {
     <div className="navbar navbar-dark bg-dark navbar-expand-lg py-4">
       <div className="container">
         <div className="navbar-brand">
-          <i className={icon} /> {title}
+          <Link className="text-white" to='/'>
+            <i className={icon} />
+            <span className="ml-3">{title}</span>
+          </Link>
         </div>
-        <button className="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
         </button>
         <div id="navbarCollapse" className="collapse navbar-collapse w-75">
           <ul className="navbar-nav d-flex align-items-center ml-auto">

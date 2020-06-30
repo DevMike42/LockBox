@@ -14,9 +14,6 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  passwordReminder: {
-    type: String,
-  },
   date: {
     type: Date,
     default: Date.now

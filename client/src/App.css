@@ -18,3 +18,29 @@
   opacity: 0;
   transition: opacity 1000ms ease-in;
 }
+
+.shadow-text {
+  text-shadow: 3px 3px 4px rgb(42, 42, 42);
+} 
+
+#leader-banner {
+  font-size: 5em;
+}
+
+.navbar i,
+.navbar span {
+  font-size: 1.5em;
+}
+
+.navbar a:hover {
+  text-decoration: none;
+}
+
+@media (min-width: 0px) and (max-width: 500px) {
+  #hero h1 {
+    font-size: 2em;
+  }
+  #landing-body h1 {
+    font-size: 2em;
+  }
+}
