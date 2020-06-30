@@ -15,6 +15,7 @@ module.exports = {
         decryptedData.push({
           _id: item._id,
           name: lockBox.decrypt(item.name),
+          loginId: lockBox.decrypt(item.loginId),
           sitePassword: lockBox.decrypt(item.sitePassword),
           link: lockBox.decrypt(item.link),
           notes: lockBox.decrypt(item.notes),

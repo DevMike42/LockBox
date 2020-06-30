@@ -39,17 +39,28 @@ const Navbar = ({ title, icon }) => {
     </Fragment>
   );
 
+  const authLogo = (
+    <div className="text-white">
+      <i className={icon} />
+      <span className="ml-3">{title}</span>
+    </div>
+  );
+
+  const guestLogo = (
+    <Link className="text-white" to='/'>
+      <i className={icon} />
+      <span className="ml-3">{title}</span>
+    </Link>
+  );
+
   return (
     <div className="navbar navbar-dark bg-dark navbar-expand-lg py-4">
       <div className="container">
         <div className="navbar-brand">
-          <Link className="text-white" to='/'>
-            <i className={icon} />
-            <span className="ml-3">{title}</span>
-          </Link>
+          {isAuthenticated ? authLogo : guestLogo}
         </div>
-        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-          <span class="navbar-toggler-icon"></span>
+        <button className="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+          <span className="navbar-toggler-icon"></span>
         </button>
         <div id="navbarCollapse" className="collapse navbar-collapse w-75">
           <ul className="navbar-nav d-flex align-items-center ml-auto">
