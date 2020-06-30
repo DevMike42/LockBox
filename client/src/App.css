@@ -18,3 +18,16 @@
   opacity: 0;
   transition: opacity 1000ms ease-in;
 }
+
+#leader-banner {
+  font-size: 5em;
+}
+
+@media (min-width: 0px) and (max-width: 500px) {
+  #hero h1 {
+    font-size: 2em;
+  }
+  #landing-body h1 {
+    font-size: 2em;
+  }
+}

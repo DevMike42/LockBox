@@ -13,7 +13,7 @@ const Login = (props) => {
   useEffect(() => {
     if (isAuthenticated) {
       // Redirect
-      props.history.push('/');
+      props.history.push('/home');
     }
 
     if (error === 'Invalid Credentials: A user with that email does not exist') {
