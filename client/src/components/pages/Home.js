@@ -15,7 +15,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="bg-light" style={{ height: "100vh" }}>
+    <div className="bg-light">
       <div className="container">
         <div className="text-secondary py-5">
           <button className="btn btn-primary btn-block" data-toggle="modal" data-target="#addPasswordModal">Add Account</button>

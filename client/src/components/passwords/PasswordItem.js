@@ -26,22 +26,19 @@ const PasswordItem = ({ password }) => {
       <div className="card bg-light mb-3 p-3 bg-white">
         <h3 className="text-dark text-left mb-3">
           {name}{' '}
-          <span
-            style={{ float: 'right' }}
-            className={'badge badge-secondary'}>test</span>
         </h3>
         <ul className="list-unstyled">
           {loginId && (<li className="mb-2">
-            <i className="fas fa-user"></i> {loginId}
+            <i className="mr-2 fas fa-user"></i> {loginId}
           </li>)}
           {sitePassword && (<li className="mb-2">
-            <i className="fas fa-key"></i> {hidePassword(sitePassword)}
+            <i className="mr-2 fas fa-key"></i> {hidePassword(sitePassword)}
           </li>)}
           {link && (<li className="mb-2">
-            <i className="fas fa-link"></i> {link}
+            <i className="mr-2 fas fa-link"></i> {link}
           </li>)}
           {notes && (<li className="mb-2">
-            <i className="fas fa-clipboard"></i> {notes}
+            <i className="mr-2 fas fa-clipboard"></i> {notes}
           </li>)}
         </ul>
         <p>
