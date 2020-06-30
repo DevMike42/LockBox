@@ -23,7 +23,7 @@ const PasswordItem = ({ password }) => {
 
   return (
     <div className="col-sm-12 col-md-6">
-      <div className="card bg-light mb-3 p-3">
+      <div className="card bg-light mb-3 p-3 bg-white">
         <h3 className="text-dark text-left mb-3">
           {name}{' '}
           <span

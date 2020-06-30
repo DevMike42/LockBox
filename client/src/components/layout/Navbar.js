@@ -43,7 +43,10 @@ const Navbar = ({ title, icon }) => {
     <div className="navbar navbar-dark bg-dark navbar-expand-lg py-4">
       <div className="container">
         <div className="navbar-brand">
-          <Link className="text-white" to='/'><i className={icon} /> {title}</Link>
+          <Link className="text-white" to='/'>
+            <i className={icon} />
+            <span className="ml-3">{title}</span>
+          </Link>
         </div>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
           <span class="navbar-toggler-icon"></span>

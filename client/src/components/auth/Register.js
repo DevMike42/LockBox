@@ -12,7 +12,7 @@ const Register = (props) => {
   useEffect(() => {
     if (isAuthenticated) {
       // Redirect
-      props.history.push('/');
+      props.history.push('/home');
     }
 
     if (error === 'User already exists') {
@@ -50,59 +50,62 @@ const Register = (props) => {
   };
 
   return (
-    <div className="container">
-      <h1>
-        Account <span className="text-primary">Register</span>
-      </h1>
-      <form onSubmit={onSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Name</label>
+    <div className="bg-light" style={{ height: "100vh" }}>
+      <div className="py-5 mx-auto text-secondary col-md-6">
+        <h1>
+          Join us for <span className="text-primary">FREE!</span>
+        </h1>
+        <p className="lead mb-4">Don't worry, LockBox is forever free! We promise. Just sign up below and experience the magic.</p>
+        <form onSubmit={onSubmit}>
+          <div className="form-group">
+            <label htmlFor="name">Name</label>
+            <input
+              className="form-control"
+              type="text"
+              name="name"
+              value={name}
+              onChange={onChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              className="form-control"
+              type="email"
+              name="email"
+              value={email}
+              onChange={onChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="masterPassword">Password</label>
+            <input
+              className="form-control"
+              type="password"
+              name="masterPassword"
+              value={masterPassword}
+              onChange={onChange}
+              minLength="6"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <input
+              className="form-control"
+              type="password"
+              name="confirmPassword"
+              value={confirmPassword}
+              onChange={onChange}
+              minLength="6"
+            />
+          </div>
           <input
-            className="form-control"
-            type="text"
-            name="name"
-            value={name}
-            onChange={onChange}
+            type="submit"
+            value="Sign Up"
+            className="btn btn-primary w-25"
           />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            className="form-control"
-            type="email"
-            name="email"
-            value={email}
-            onChange={onChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="masterPassword">Password</label>
-          <input
-            className="form-control"
-            type="password"
-            name="masterPassword"
-            value={masterPassword}
-            onChange={onChange}
-            minLength="6"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
-            className="form-control"
-            type="password"
-            name="confirmPassword"
-            value={confirmPassword}
-            onChange={onChange}
-            minLength="6"
-          />
-        </div>
-        <input
-          type="submit"
-          value="Register"
-          className="btn btn-primary btn-block"
-        />
-      </form>
+        </form>
+      </div>
     </div>
   )
 }

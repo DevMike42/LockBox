@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import bgImg from './images/bg-landing-hero.png';
 import createAccountImg from './images/landing-body-create-account.png';
+import addAccountImg from './images/landing-body-add-account.png';
 import iconLock from './images/landing-body-icon-lock.png'
 import iconShield from './images/landing-body-icon-shield.png'
 
@@ -20,8 +21,8 @@ const Landing = () => {
       <section id="hero" style={{ height: "65vh" }}>
         <div className="text-white d-flex align-items-center" style={herostyling} >
           <div className="mx-auto">
-            <h1 className="display-4 text-center">Can't remember all your passwords?</h1>
-            <h3 className="text-center">Welcome to the ultimate password manager!</h3>
+            <h1 className="display-4 text-center shadow-text">Can't remember all your passwords?</h1>
+            <h3 className="text-center shadow-text">Welcome to the ultimate password manager!</h3>
           </div>
         </div>
       </section>
@@ -46,7 +47,7 @@ const Landing = () => {
             </div>
           </div>
           <div className="col-xs-12 col-md-6 order-sm-1 px-5 my-3">
-            <img src={createAccountImg} alt="create_account" className="img-fluid" />
+            <img src={createAccountImg} alt="create_account" className="img-fluid" style={{ border: "2px solid lightgray", borderRadius: "8px" }} />
           </div>
         </div>
         <hr className="w-100 clearfix d-md-none" />
@@ -57,8 +58,8 @@ const Landing = () => {
               <p className="lead text-secondary">Simply add all your password info in your vault. Your vault is securely encrypted. We promise.</p>
             </div>
           </div>
-          <div className="col-xs-12 col-md-6 px-5 my-3">
-            <img src={createAccountImg} alt="create_account" className="img-fluid" />
+          <div className="col-xs-12 col-md-6 px-5 my-3 text-center">
+            <img src={addAccountImg} alt="add_account" className="img-fluid w-75" style={{ border: "2px solid lightgray", borderRadius: "8px" }} />
           </div>
         </div>
         <div className="row my-5">
