@@ -2,10 +2,10 @@ require('dotenv').config();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
+const config = require('config');
+const jwtSecret = config.get('jwtSecret');
 
 const User = require('../models/User');
-
-const JWT_SECRET = process.env.JWT_SECRET;
 
 module.exports = {
   create: async (req, res) => {
@@ -50,7 +50,7 @@ module.exports = {
       };
 
       // Add payload and jwtSecret to token and send back
-      jwt.sign(payload, JWT_SECRET, {
+      jwt.sign(payload, jwtSecret, {
         expiresIn: 36000
       }, (err, token) => {
         if (err) throw err;

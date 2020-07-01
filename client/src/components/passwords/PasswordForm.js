@@ -61,7 +61,7 @@ const PasswordForm = () => {
   return (
     <form>
       <div className="modal-header mb-2">
-        <h2 className="text-dark text-center">{current ? 'Edit' : 'Add'} Account</h2>
+        <h2 className="text-dark text-center">{current ? 'Edit' : 'Add'} Password</h2>
         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -126,7 +126,7 @@ const PasswordForm = () => {
         <input
           type="button"
           className="btn btn-primary"
-          value={current ? 'Save Changes' : 'Add Account'}
+          value={current ? 'Save Changes' : 'Add Password'}
           onClick={submitForm}
           data-dismiss="modal"
         />
