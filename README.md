@@ -3,8 +3,6 @@
 ## Overview
 A MERN stack application built as LastPass Clone for discretely storing and managing a user's sensitive password information. This app includes user authentication with JSON Web Tokens as well as data encryption using bcryptjs. React state and lifecycle features are managed with React Hooks and Context. 
 
-A password manager application similar to LastPass for storing sensitive passwords and information.
-
 ## Technologies used
 * **ReactJS** - A JavaScript Library for creating an interactive component based UI
 * **MongoDB** - A NoSQL database for storing user data
