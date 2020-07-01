@@ -15,10 +15,10 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="bg-light">
+    <div className="bg-light" style={{ minHeight: "85vh" }}>
       <div className="container">
         <div className="text-secondary py-5">
-          <button className="btn btn-primary btn-block" data-toggle="modal" data-target="#addPasswordModal">Add Account</button>
+          <button className="btn btn-primary btn-block" data-toggle="modal" data-target="#addPasswordModal">Add Password</button>
           <div className="modal fade" id="addPasswordModal" tabIndex="-1" role="dialog" aria-hidden="true">
             <div className="modal-dialog">
               <div className="modal-content p-4">
