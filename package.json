@@ -26,7 +26,7 @@
   "devDependencies": {
     "concurrently": "^5.1.0",
     "minimist": "^1.2.5",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.4"
   },
   "resolutions": {
     "minimist": "^1.2.5"
